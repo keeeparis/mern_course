@@ -4,11 +4,14 @@ import mongoose from 'mongoose'
 import authRouter from './routes/auth.routes.js'
 import linkRouter from './routes/link.routes.js'
 import redirectRouter from './routes/redirect.routes.js'
-import path from 'path'
+import * as path from 'path'
+import { fileURLToPath } from 'url'
 
 const app = express()
 
 const PORT = config.get('port') || 5000
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url)) // через import нет изначально переменной __dirname
 
 app.use(express.json({extended:true}))
 app.use('/api/auth', authRouter)
